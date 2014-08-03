@@ -23,10 +23,109 @@ $ bin/rake
 ## Endpoints
 
 - `GET /posts`
+
+```json
+{
+  "links": {
+    "posts.author": {
+      "href": "http://example.com/authors/{posts.author}",
+      "type": "authors"
+    }
+  },
+  "posts": [{
+    "id": 1,
+    "text": "some text",
+    "created_at": "2014-08-03T13:08:58Z",
+    "links": {
+      "author": 1
+    }
+  }, {
+    "id": 2,
+    "text": "some text",
+    "created_at": "2014-08-03T13:08:58Z",
+    "links": {
+      "author": 2
+    }
+  }],
+  "linked": {
+    "authors": [{
+      "id": 1,
+      "name": "Jay"
+    },{
+      "id": 2,
+      "name": "Silent Bob"
+    }]
+  }
+}
+```
+
 - `GET /posts/:id`
+
+```json
+{
+  "links": {
+    "posts.author": {
+      "href": "http://example.com/authors/{posts.author}",
+      "type": "authors"
+    }
+  },
+  "posts": {
+    "id": 1,
+    "text": "some text",
+    "created_at": "2014-08-03T13:08:58Z",
+    "links": {
+      "author": 1
+    }
+  },
+  "linked": {
+    "authors": [{
+      "id": 1,
+      "name": "Jay"
+    }]
+  }
+}
+```
+
 - `GET /authors`
+
+```json
+{
+  "authors": [{
+    "id": 1,
+    "name": "Jay"
+  },{
+    "id": 2,
+    "name": "Silent Bob"
+  }]
+}
+```
+
 - `GET /authors/:id`
+
+```json
+{
+  "authors": {
+    "id": 1,
+    "name": "Jay"
+  }
+}
+```
+
 - `GET /authors/:author_id/posts`
+
+```json
+{
+  "posts": [{
+    "id": 1,
+    "text": "some text",
+    "created_at": "2014-08-03T13:08:58Z"
+  }, {
+    "id": 3,
+    "text": "some text",
+    "created_at": "2014-08-03T13:08:58Z"
+  }]
+}
+```
 
 ## Notes:
 
