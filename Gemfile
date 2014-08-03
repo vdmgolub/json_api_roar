@@ -9,3 +9,9 @@ gem 'spring', group: :development
 gem 'sqlite3'
 
 gem 'roar-rails'
+
+group :test do
+  gem 'rack-test', require: 'rack/test'
+  gem 'minitest-rails'
+  gem 'database_cleaner'
+end
