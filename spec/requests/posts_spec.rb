@@ -94,4 +94,35 @@ describe 'Posts' do
       )
     end
   end
+
+  describe 'GET /authors/:id/posts' do
+    before do
+      post
+
+      get "/authors/#{post.author.id}/posts"
+      @result = JSON.parse(last_response.body)
+    end
+
+    it 'returns 200 OK' do
+      last_response.status.must_equal 200
+    end
+
+    it 'returns JSON data' do
+      @result['posts'].must_equal(
+        [{
+          'id' => post.id,
+          'text' => post.text,
+          'created_at' => post.created_at.iso8601,
+        }]
+      )
+    end
+
+    it 'does not return links' do
+      @result['links'].must_equal nil
+    end
+
+    it 'does not return linked authors' do
+      @result['linked'].must_equal nil
+    end
+  end
 end
